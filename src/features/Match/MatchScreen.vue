@@ -6,37 +6,40 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Card from '@/components/Card.vue';
+import { Option } from '@/models/Option';
+
+const mockOptions: Option[] = [
+  {
+    id: '1',
+    name: 'Pizza Restaurant',
+    cost: 5,
+    timeTo: 4,
+  },
+  {
+    id: '2',
+    name: 'Burguer Restaurant',
+    cost: 1,
+    timeTo: 5,
+  },
+  {
+    id: '3',
+    name: 'Bar Restaurant',
+    cost: 2,
+    timeTo: 3,
+  },
+];
 
 export default {
   name: 'match-screen',
   computed: {
-    currentOption() {
+    currentOption(): Option {
       return this.options[this.currentIndex];
     },
   },
   data: () => ({
-      options: [
-        {
-          id: '1',
-          name: 'Pizza Restaurant',
-          price: '5',
-          timeTo: '4',
-        },
-        {
-          id: '2',
-          name: 'Burguer Restaurant',
-          price: '1',
-          timeTo: '5',
-        },
-        {
-          id: '3',
-          name: 'Bar Restaurant',
-          price: '2',
-          timeTo: '3',
-        },
-      ],
+      options: mockOptions,
       currentIndex: 0,
   }),
   methods: {

@@ -19,10 +19,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from '@vue/runtime-core';
+import { Option } from '../models/Option';
+
 export default {
     name: 'Card',
-    props: ['currentOption'],
+    props: {
+        currentOption: {
+            type: Object as PropType<Option>,
+            required: true,
+        },
+    },
 };
 </script>
 

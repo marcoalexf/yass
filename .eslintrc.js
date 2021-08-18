@@ -17,6 +17,7 @@ module.exports = {
     'linebreak-style': 0,
     "quotes": [2, "single"],
     'prefer-const': 'off',
-    "indent": 'off'
+    "indent": 'off',
+    "semi": 'off'
   },
 };
