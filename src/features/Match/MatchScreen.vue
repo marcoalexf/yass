@@ -1,16 +1,13 @@
 <template>
   <div class="container">
     <button @click="reject()">Nah</button>
-    <div>
-      <p>{{currentOption.name}}</p>
-    </div>
-    <card></card>
+    <Card :currentOption="currentOption"></Card>
     <button @click="accept()">Yeah!</button>
   </div>
 </template>
 
 <script>
-import CardVue from '@/components/Card.vue';
+import Card from '@/components/Card.vue';
 
 export default {
   name: 'match-screen',
@@ -55,11 +52,17 @@ export default {
     },
   },
   components: {
-    card: CardVue,
+    Card,
   },
 };
 </script>
 
 <style>
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
 
 </style>

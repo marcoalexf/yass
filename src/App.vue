@@ -1,34 +1,22 @@
 <template>
   <navbar />
-  <div id="nav">
-    <router-link to="/">
-      <match>/</match>
-    </router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
-import MatchScreenVue from './features/Match/MatchScreen.vue';
 
 export default {
   name: 'App',
   components: {
     navbar: Navbar,
-    match: MatchScreenVue
   },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  height: 100%;
 }
 
 #nav {
