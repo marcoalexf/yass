@@ -1,6 +1,6 @@
 {
-  "name": "build-a-robot",
-  "version": "0.1.0",
+  "name": "yass",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

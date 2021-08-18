@@ -1,24 +1,8 @@
-# build-a-robot
+# Finally agree on where to go out
 
-## Project setup
-```
-yarn install
-```
+With this you and your partner, or friends, or whatever, can finally agree on where to go out.
+10 restaurants? No problem.
+50 pubs? We got you.
+1000 small food trailers? Allow me to help.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+At last, shout "YASS!!!!!" when a decision was made.
