@@ -1,8 +1,19 @@
 <template>
   <div class="container">
-    <button @click="reject()">Nah</button>
-    <Card :currentOption="currentOption"></Card>
-    <button @click="accept()">Yeah!</button>
+    <div class="hover-area" :class="{
+      'being-rejected': rejectReady
+    }" @mouseover="rejectReady = true" @mouseleave="rejectReady = false">
+      <button @click="reject()">Nah</button>
+    </div>
+    <Card :currentOption="currentOption" class="card" :class="{
+      'accept-ready': acceptReady,
+      'reject-ready': rejectReady
+    }"></Card>
+    <div class="hover-area" :class="{
+      'being-accepted': acceptReady
+    }" @mouseover="acceptReady = true" @mouseleave="acceptReady = false">
+      <button @click="accept()">Yeah!</button>
+    </div>
   </div>
 </template>
 
@@ -42,6 +53,8 @@ export default defineComponent({
   data: () => ({
       options: mockOptions,
       currentIndex: 0,
+      rejectReady: false,
+      acceptReady: false,
   }),
   methods: {
     accept() {
@@ -74,5 +87,36 @@ export default defineComponent({
 .container > * {
   margin: 0 5px 0 5px;
 }
+
+.accept-ready {
+  opacity: .95;
+  animation:accept .1s ease-in-out forwards;
+}
+
+.reject-ready {
+  opacity: .95;
+  animation:reject .1s ease-in-out forwards;
+}
+
+.hover-area {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  position: absolute;
+  width: 300px;
+}
+
+.being-accepted {
+  background-color: limegreen;
+}
+
+.being-rejected {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+@keyframes reject { 100% { transform: rotate(-10deg) translate(-50px, 0px); } }
+@keyframes accept { 100% { transform: rotate(10deg) translate(50px, 0px); } }
 
 </style>
