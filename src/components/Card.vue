@@ -1,26 +1,16 @@
 <template>
-  <div class="card">
-      <div class="card-header card-row card-padding">
-          <div class="card-title">
-              {{this.currentOption.name}}
-          </div>
-      </div>
-      <div class="card-body card-padding">
-          Price: {{this.currentOption.price}}
-          Time to : {{this.currentOption.timeTo}}
-      </div>
-      <div class="card-footer card-padding">
-          <div class="card-footer-actions card-row">
-              <button>Open in Maps</button>
-              <button>See website</button>
-              <button>Save for later</button>
-          </div>
-      </div>
-  </div>
+    <n-card title="Card">
+        Price: {{this.currentOption.price}}
+        Time to : {{this.currentOption.timeTo}}
+        <template #action>
+            Action
+        </template>
+    </n-card>
 </template>
 
 <script lang="ts">
 import { PropType } from '@vue/runtime-core';
+import { NCard } from 'naive-ui';
 import { Option } from '../models/Option';
 
 export default {
@@ -30,6 +20,9 @@ export default {
             type: Object as PropType<Option>,
             required: true,
         },
+    },
+    components: {
+        NCard,
     },
 };
 </script>

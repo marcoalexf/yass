@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import Card from '@/components/Card.vue';
 import { Option } from '@/models/Option';
 
@@ -31,10 +32,10 @@ const mockOptions: Option[] = [
   },
 ];
 
-export default {
+export default defineComponent({
   name: 'match-screen',
   computed: {
-    currentOption(): Option {
+    currentOption() {
       return this.options[this.currentIndex];
     },
   },
@@ -57,7 +58,7 @@ export default {
   components: {
     Card,
   },
-};
+});
 </script>
 
 <style>
@@ -66,6 +67,12 @@ export default {
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.container > * {
+  margin: 0 5px 0 5px;
 }
 
 </style>
