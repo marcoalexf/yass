@@ -18,19 +18,15 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
+const authStateChange = auth.onAuthStateChanged;
 // collection references
-const usersCollection = db.collection('users')
-const postsCollection = db.collection('posts')
-const commentsCollection = db.collection('comments')
-const likesCollection = db.collection('likes')
+const userItemsCollection = (userId: string) => db.collection(userId)
 
 // export utils/refs
 export {
   db,
   auth,
-  usersCollection,
-  postsCollection,
-  commentsCollection,
-  likesCollection,
+  userItemsCollection,
   googleProvider,
+  authStateChange,
 }

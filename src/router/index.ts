@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import MatchScreen from '../features/Match/MatchScreen.vue';
 import LoginScreen from '../features/Login/LoginScreen.vue';
 import LogoutScreen from '../features/Logout/LogoutScreen.vue';
-import { auth } from '../../firebase-config';
+import { auth, authStateChange } from '../../firebase-config';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,11 +32,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
+  const user = auth.currentUser;
 
-  if (requiresAuth && !auth.currentUser) {
-    next('/login')
+  if (requiresAuth && !user) {
+    next('/login');
   } else {
-    next()
+    next();
   }
 })
 

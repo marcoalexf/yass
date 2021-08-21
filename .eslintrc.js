@@ -19,5 +19,6 @@ module.exports = {
     'prefer-const': 'off',
     indent: 'off',
     semi: 'off',
+    "object-curly-newline": 0
   },
 };

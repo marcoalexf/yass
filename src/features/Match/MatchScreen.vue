@@ -2,69 +2,74 @@
   <div class="container">
     <div class="hover-area" :class="{
       'being-rejected': rejectReady
-    }" @mouseover="rejectReady = true" @mouseleave="rejectReady = false">
-      <button @click="reject()">Nah</button>
+    }" @mouseover="rejectReady = true" @mouseleave="rejectReady = false" @click="reject()">
     </div>
-    <Card :currentOption="currentOption" class="card" :class="{
+    <Card v-if="currentOption" :currentOption="currentOption" class="card" :class="{
       'accept-ready': acceptReady,
       'reject-ready': rejectReady
     }"></Card>
     <div class="hover-area" :class="{
       'being-accepted': acceptReady
-    }" @mouseover="acceptReady = true" @mouseleave="acceptReady = false">
-      <button @click="accept()">Yeah!</button>
+    }" @mouseover="acceptReady = true" @mouseleave="acceptReady = false" @click="accept()">
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Card from '@/components/Card.vue';
 import { Option } from '@/models/Option';
-
-const mockOptions: Option[] = [
-  {
-    id: '1',
-    name: 'Pizza Restaurant',
-    cost: 5,
-    timeTo: 4,
-  },
-  {
-    id: '2',
-    name: 'Burguer Restaurant',
-    cost: 1,
-    timeTo: 5,
-  },
-  {
-    id: '3',
-    name: 'Bar Restaurant',
-    cost: 2,
-    timeTo: 3,
-  },
-];
+import Card from '../../components/Card.vue'
+import { auth, userItemsCollection } from '../../../firebase-config'
 
 export default defineComponent({
   name: 'match-screen',
+  mounted() {
+    if (auth.currentUser) {
+      userItemsCollection(auth.currentUser.uid).onSnapshot((snapshotChange) => {
+        snapshotChange.forEach((doc) => {
+          const { name, price, distance, type, favorite } = doc.data();
+          const option: Option = {
+            id: doc.id,
+            name,
+            price,
+            distance,
+            type,
+            favorite,
+          };
+          this.options.push(option);
+        })
+      });
+    }
+  },
   computed: {
     currentOption() {
       return this.options[this.currentIndex];
     },
   },
-  data: () => ({
-      options: mockOptions,
-      currentIndex: 0,
-      rejectReady: false,
-      acceptReady: false,
-  }),
+  data: () => {
+    const options: Option[] = [];
+    const currentIndex = 0;
+    const rejectReady = false;
+    const acceptReady = false;
+    const data = {
+      options,
+      currentIndex,
+      rejectReady,
+      acceptReady,
+    }
+    return data;
+  },
   methods: {
     accept() {
       // next in options
       if (this.currentIndex + 1 < this.options.length) this.currentIndex += 1;
+      this.acceptReady = false;
       if (process.env.NODE_ENV === 'development') console.log('accepted');
     },
     reject() {
       // previous in options
       if (this.currentIndex - 1 >= 0) this.currentIndex -= 1;
+      this.rejectReady = false;
       if (process.env.NODE_ENV === 'development') console.log('rejected');
     },
   },
@@ -101,6 +106,7 @@ export default defineComponent({
 .hover-area {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .card {

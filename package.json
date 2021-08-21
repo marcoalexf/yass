@@ -10,6 +10,12 @@
   "dependencies": {
     "@firebase/auth": "^0.16.8",
     "@types/vue-router": "^2.0.0",
+    "@vicons/antd": "^0.11.0",
+    "@vicons/fa": "^0.11.0",
+    "@vicons/fluent": "^0.11.0",
+    "@vicons/ionicons4": "^0.11.0",
+    "@vicons/ionicons5": "^0.11.0",
+    "@vicons/material": "^0.11.0",
     "@vue/runtime-core": "^3.2.4",
     "core-js": "^3.6.5",
     "dotenv": "^10.0.0",
